@@ -212,7 +212,7 @@ function calcMem(cmd, ele) {
 //this tells the program what digit segments to turn on or off depending on which character is should be displaying
 function getSticks(char) {
 	switch(char) {
-  	case "0": return [1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0]; 
+    case "0": return [1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0]; 
     case "1": return [0, 0, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0]; 
     case "2": return [1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0]; 
     case "3": return [0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0]; 
