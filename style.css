@@ -1,4 +1,74 @@
 * {
-  font-family: "Courier New";
-  font-size: 20px;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+}
+
+.calculatorBody {
+  margin-top: 2%;
+  background-color: black;
+  padding: 20px;
+  border-radius: 20px;
+}
+
+.display {
+  width: 800px;
+  height: 80px;
+}
+
+.buttons {
+  display: grid;
+  grid-template: 1fr / 4fr 2fr;
+  height: 500px;
+}
+
+.numButtons {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.numButtons .calcbutton:nth-child(10) {
+  background-color: #820404;
+}
+
+.calcbutton {
+  flex-basis: 25%;
+  background-color: grey;
+  color: black;
+  font-size: 3em;
+  text-shadow: 2px 2px 3px black;
+  box-sizing: border-box;
+  margin: 1%;
+  box-shadow: 2px 2px 3px grey;
+}
+
+.funcbuttons {
+  margin-top: 30px;
+  display: flex;
+  margin-right: 20px;
+  margin-left: -20px;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: space-around;
+  row-gap: 10px;
+  column-gap: 10px;
+}
+
+.funcbuttons .calcbutton {
+  flex-basis: 25%;
+}
+
+.funcbuttons .calcbutton:last-of-type {
+  background-color: #820404;
+}
+
+.funcbuttons .calcbutton:nth-child(5) {
+  font-size: 2.5em;
 }
