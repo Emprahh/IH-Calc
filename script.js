@@ -207,7 +207,10 @@ function calcMem(cmd, ele) {
       break;
     //updates display when just a digit is pressed
     default:
-    	if (intMem.length < 12){
+    	if (intMem.length < 12) {
+        if (ele === "." && intMem.indexOf(".") !== -1) {
+          return;
+        }
       	//this isn't adding two numbers together, this is concating two strings, number conversion only           happens when an operator is pressed
     		intMem += ele;
         refreshSticks();
