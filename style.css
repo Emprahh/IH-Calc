@@ -14,7 +14,10 @@ body {
   margin-top: 2%;
   background-color: black;
   padding: 20px;
-  border-radius: 20px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 
 .display {
@@ -25,7 +28,7 @@ body {
 
 canvas {
   padding-bottom: 30px;
-  border-bottom: 5px solid grey;
+  border-bottom: 5px groove grey;
 }
 
 .buttons {
@@ -47,15 +50,30 @@ canvas {
 
 .numButtons .calcbutton:nth-child(10) {
   background-color: #820404;
+  box-shadow: 2px 2px 3px #820404;
+}
+
+.numButtons .calcbutton:nth-child(10):active {
+  transform: scale(0.98);
+  box-shadow: 0px 0px;
+  box-shadow: inset 2px 3px 3px 3px rgb(90, 5, 5), 0px 1px 1px rgb(200, 5, 5);
+  border: 0px;
 }
 
 .calcbutton {
   background-color: grey;
   color: black;
-  border-color: grey;
+  border: none;
   font-size: 1.5em;
   text-shadow: 2px 2px 3px black;
   box-shadow: 2px 2px 3px grey;
+}
+
+.calcbutton:active {
+  transform: scale(0.98);
+  box-shadow: 0px 0px;
+  box-shadow: inset 2px 3px 3px 3px rgb(75, 75, 75), 0px 1px 1px rgb(150, 150, 150);
+  border-color: none;
 }
 
 .funcbuttons {
@@ -75,7 +93,12 @@ canvas {
   background-color: #820404;
   grid-column-start: 2;
   grid-row: span 2;
+  box-shadow: 2px 2px 3px #820404;
 }
 
-.funcbuttons .calcbutton:nth-child(5) {
+.funcbuttons .calcbutton:last-of-type:active {
+  transform: scale(0.98);
+  box-shadow: 0px 0px;
+  box-shadow: inset 2px 3px 3px 3px rgb(90, 5, 5), 0px 1px 1px rgb(200, 5, 5);
+  border: 0px;
 }
