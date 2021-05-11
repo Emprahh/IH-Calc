@@ -51,7 +51,7 @@ canvas {
 }
 
 .numButtons .calcbutton:nth-child(10) {
-  background-color: #820404;
+  background-color: rgb(170, 0, 0);
   box-shadow: 2px 2px 3px #820404;
 }
 
@@ -63,11 +63,12 @@ canvas {
 }
 
 .calcbutton {
-  background-color: grey;
-  color: black;
+  background-color: rgb(80, 80, 80);
+
+  color: silver;
   border: none;
   font-size: 1.5em;
-  text-shadow: 2px 2px 3px black;
+  text-shadow: 1px 1px 2px black;
   box-shadow: 2px 2px 3px grey;
   border-radius: 5px;
 }
@@ -93,7 +94,7 @@ canvas {
 }
 
 .funcbuttons .calcbutton:last-of-type {
-  background-color: #820404;
+  background-color: rgb(170, 0, 0);
   grid-column-start: 2;
   grid-row: span 2;
   box-shadow: 2px 2px 3px #820404;
