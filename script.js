@@ -146,6 +146,9 @@ function calcMem(cmd, ele) {
       if (lastOp === "") {
         lastProduct = parseFloat(intMem);
       }
+      if (lastOp === "" && intMem === "") {
+        return;
+      }
       //if number was entered, update product to new result and display it
       else if (intMem !== "") {
       	switch (lastOp) {
@@ -261,12 +264,19 @@ function displaySticks(num, scroll, reverse) {
   }
   //easier to display number when reversed
 	var rNum = reverseNum(num);
+  var decimalPos = rNum.indexOf(".");
+  console.log(decimalPos);
+  if (decimalPos !== -1) {
+    rNum = rNum.replace(".", "");
+  }
   //this portion of the code slices off a number from the end (the num is reversed so it's actually the beggining) and feeds it to the function that returns which segments to turn on and off
 	for (var i = 0; i < rNum.length; i++) {
-  	var charPos = displaySpots[i];
     var displayChar = getSticks(rNum.slice(i, i + 1));
       for (var x = 0; x < displayChar.length; x++){
           displaySpots[displaySpots.length - 1 - i].segments[x].bit = displayChar[x];
+          if (decimalPos !== -1 && x === 14 && decimalPos === i) {
+            displaySpots[displaySpots.length - 1 - i].segments[x].bit = 1;
+          }
       }
   }
   animate();
