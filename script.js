@@ -99,7 +99,7 @@ function setup() {
     		}
 		});
   }
-  //this handles some bugs I was having with the scrolling starting immediately 
+  //this handles some bugs I was having with the scrolling starting immediately
   if(scrolling === true) {stickScroll(null, 1);}
   calcMem("reset", null);
 }
@@ -132,12 +132,17 @@ function calcMem(cmd, ele) {
       lastOp = "";
       scrollBreaker = false;
       refreshSticks();
-      //20 is the number of spots the message will travel before automatically stopping * actually I might have made it infinite when I got the function to stop the scrolling with button press working* 
+      //20 is the number of spots the message will travel before automatically stopping * actually I might have made it infinite when I got the function to stop the scrolling with button press working*
       stickScroll(["ERROR", 20, 0]);
       break;
     case "operation":
     	taskMem.push([intMem, ele]);
       //if first operator used, just redisplay the number entered
+      if (ele === "square") {
+        var tmpint = parseFloat(intMem);
+        tmpint = tmpint * tmpint;
+        intMem = tmpint.toString();
+      }
       if (lastOp === "") {
         lastProduct = parseFloat(intMem);
       }
@@ -212,27 +217,27 @@ function calcMem(cmd, ele) {
 //this tells the program what digit segments to turn on or off depending on which character is should be displaying
 function getSticks(char) {
 	switch(char) {
-    case "0": return [1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0]; 
-    case "1": return [0, 0, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0]; 
-    case "2": return [1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0]; 
-    case "3": return [0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0]; 
-    case "4": return [0, 0, 1, 1, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0]; 
-    case "5": return [0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0]; 
-    case "6": return [1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0]; 
-    case "7": return [0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]; 
-    case "8": return [1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0]; 
-    case "9": return [0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0]; 
-    case "-": return [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0]; 
-    case "+": return [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0]; 
-    case "/": return [0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0]; 
-    case "*": return [0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0]; 
-    case "%": return [0, 0, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0]; 
+    case "0": return [1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0];
+    case "1": return [0, 0, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0];
+    case "2": return [1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0];
+    case "3": return [0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0];
+    case "4": return [0, 0, 1, 1, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0];
+    case "5": return [0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0];
+    case "6": return [1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0];
+    case "7": return [0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    case "8": return [1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0];
+    case "9": return [0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0];
+    case "-": return [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0];
+    case "+": return [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0];
+    case "/": return [0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0];
+    case "*": return [0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0];
+    case "%": return [0, 0, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0];
     case ".": return [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1];
     case "E": return [1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0];
     case "R": return [1, 0, 0, 1, 1, 1, 0, 1, 0, 0, 1, 1, 0, 0, 0];
-    case "O": return [1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0]; 
+    case "O": return [1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0];
     case " ": return [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-  
+
   }
 }
 
@@ -294,11 +299,11 @@ function stickScroll(scrollArgs, breaker) {
 //this is the function that actually handles drawing the segments to the screen, they are all just polygons
 function animate() {
     //requestAnimationFrame(animate);
-	
+
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 	ctx.fillStyle = 'rgb(0, 0, 0)';
 	ctx.fillRect(0, 0, canvas.width, canvas.height);
-	
+
 	for (var i = 0; i < displaySpots.length; i++) {
   	var spot = displaySpots[i];
     //console.log(spot.segments.length);
@@ -314,7 +319,7 @@ function animate() {
       if (seg.bit === 1) {ctx.fillStyle = 'rgb(255, 0, 0)';}
       if (seg.bit === 0) {ctx.fillStyle = 'rgb(50, 0, 0)';}
       ctx.fill();
-    } 
+    }
   }
 }
 

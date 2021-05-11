@@ -10,6 +10,7 @@ body {
 }
 
 .calculatorBody {
+  box-shadow: 10px 10px 0px grey;
   margin-top: 2%;
   background-color: black;
   padding: 20px;
@@ -17,21 +18,31 @@ body {
 }
 
 .display {
+  margin-top: 20px;
   width: 800px;
   height: 80px;
 }
 
+canvas {
+  padding-bottom: 30px;
+  border-bottom: 5px solid grey;
+}
+
 .buttons {
   display: grid;
-  grid-template: 1fr / 4fr 2fr;
+  grid-template: 1fr / 2fr 1fr;
   height: 500px;
+  width: 700px;
+  margin-left: 50px;
+  margin-top: 50px;
 }
 
 .numButtons {
   margin-top: 20px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  display: grid;
+  grid-template: 1fr 1fr 1fr 1fr / 1fr 1fr 1fr;
+  grid-column-gap: 20px;
+  grid-row-gap: 10px;
 }
 
 .numButtons .calcbutton:nth-child(10) {
@@ -39,36 +50,31 @@ body {
 }
 
 .calcbutton {
-  flex-basis: 25%;
   background-color: grey;
   color: black;
-  font-size: 3em;
+  font-size: 1.5em;
   text-shadow: 2px 2px 3px black;
-  box-sizing: border-box;
-  margin: 1%;
   box-shadow: 2px 2px 3px grey;
 }
 
 .funcbuttons {
-  margin-top: 30px;
-  display: flex;
-  margin-right: 20px;
-  margin-left: -20px;
-  flex-wrap: wrap;
-  flex-direction: column;
-  justify-content: space-around;
-  row-gap: 10px;
-  column-gap: 10px;
+  margin-top: 20px;
+  margin-left: 20px;
+  display: grid;
+  grid-template: 1fr 1fr 1fr 1fr / 1fr 1fr;
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
 }
 
-.funcbuttons .calcbutton {
-  flex-basis: 25%;
+.funcbuttons #square {
+  order: 1;
 }
 
 .funcbuttons .calcbutton:last-of-type {
   background-color: #820404;
+  grid-column-start: 2;
+  grid-row: span 2;
 }
 
 .funcbuttons .calcbutton:nth-child(5) {
-  font-size: 2.5em;
 }
