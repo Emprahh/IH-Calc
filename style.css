@@ -52,6 +52,7 @@ canvas {
 .calcbutton {
   background-color: grey;
   color: black;
+  border-color: grey;
   font-size: 1.5em;
   text-shadow: 2px 2px 3px black;
   box-shadow: 2px 2px 3px grey;
