@@ -86,7 +86,7 @@ function setup() {
     		//this turns off the scrolling that happens when you have an error, like when you divide by 0, 					when you press a button
     		if(scrolling === true) {stickScroll(null, 1);}
         //if button is a number button, pass it's value to the logic function
-        if(Number.isInteger(parseInt(this.id)) || this.id === ".") {
+        if(Number.isInteger(parseFloat(this.id)) || this.id === ".") {
   				calcMem(null, this.id);
   			}
         //passes a reset command to logic function
@@ -153,19 +153,19 @@ function calcMem(cmd, ele) {
       else if (intMem !== "") {
       	switch (lastOp) {
           case "+":
-            lastProduct += parseInt(intMem);
+            lastProduct += parseFloat(intMem);
             break;
           case "-":
-            lastProduct -= parseInt(intMem);
+            lastProduct -= parseFloat(intMem);
             break;
           case "/":
-            lastProduct = lastProduct / parseInt(intMem);
+            lastProduct = lastProduct / parseFloat(intMem);
             break;
           case "*":
-            lastProduct = lastProduct * parseInt(intMem);
+            lastProduct = lastProduct * parseFloat(intMem);
             break;
           case "%":
-            lastProduct = lastProduct % parseInt(intMem);
+            lastProduct = lastProduct % parseFloat(intMem);
             break;
         }
       }
