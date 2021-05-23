@@ -47,8 +47,8 @@ canvas {
 .numButtons {
   display: grid;
   grid-template: 1fr 1fr 1fr 1fr / 1fr 1fr 1fr;
-  grid-column-gap: 20px;
-  grid-row-gap: 10px;
+  grid-column-gap: 4%;
+  grid-row-gap: 2%;
 }
 
 .numButtons .calcbutton:nth-child(10) {
@@ -68,7 +68,7 @@ canvas {
 
   color: silver;
   border: none;
-  font-size: 1.5em;
+  font-size:calc(12px + 1.5vw);
   text-shadow: 1px 1px 2px black;
   box-shadow: 2px 2px 3px grey;
   border-radius: 5px;
@@ -85,8 +85,8 @@ canvas {
   margin-left: 10%;
   display: grid;
   grid-template: 1fr 1fr 1fr 1fr / 1fr 1fr;
-  grid-column-gap: 10px;
-  grid-row-gap: 10px;
+  grid-column-gap: 5%;
+  grid-row-gap: 2%;
 }
 
 .funcbuttons #square {
