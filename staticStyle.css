@@ -1,0 +1,104 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  display: flex;
+  justify-content: center;
+}
+.calculatorBody {
+  box-shadow: 10px 10px 0px grey;
+  margin-top: 2%;
+  background-color: black;
+  padding: 20px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.display {
+  margin-top: 20px;
+  width: 800px;
+  height: 80px;
+  box-shadow: 0px 1px 5px #820404, -0px -4px 5px #820404;
+  border-radius: 10px;
+}
+
+canvas {
+  padding-bottom: 30px;
+  border-bottom: 5px groove grey;
+}
+.buttons {
+  display: grid;
+  grid-template: 1fr / 2fr 1fr;
+  height: 500px;
+  width: 700px;
+  margin-left: 50px;
+  margin-top: 50px;
+}
+
+.numButtons {
+  margin-top: 20px;
+  display: grid;
+  grid-template: 1fr 1fr 1fr 1fr / 1fr 1fr 1fr;
+  grid-column-gap: 20px;
+  grid-row-gap: 10px;
+}
+
+.numButtons .calcbutton:nth-child(10) {
+  background-color: rgb(170, 0, 0);
+  box-shadow: 2px 2px 3px #820404;
+}
+
+.numButtons .calcbutton:nth-child(10):active {
+  transform: scale(0.98);
+  box-shadow: 0px 0px;
+  box-shadow: inset 2px 3px 3px 3px rgb(90, 5, 5), 0px 1px 1px rgb(200, 5, 5);
+  border: 0px;
+}
+
+.calcbutton {
+  background-color: rgb(80, 80, 80);
+  color: silver;
+  border: none;
+  font-size: 1.5em;
+  text-shadow: 1px 1px 2px black;
+  box-shadow: 2px 2px 3px grey;
+  border-radius: 5px;
+}
+
+.calcbutton:active {
+  transform: scale(0.98);
+  box-shadow: 0px 0px;
+  box-shadow: inset 2px 3px 3px 3px rgb(75, 75, 75), 0px 1px 1px rgb(150, 150, 150);
+  border-color: none;
+}
+
+.funcbuttons {
+  margin-top: 20px;
+  margin-left: 20px;
+  display: grid;
+  grid-template: 1fr 1fr 1fr 1fr / 1fr 1fr;
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+}
+
+.funcbuttons #square {
+  order: 1;
+}
+
+.funcbuttons .calcbutton:last-of-type {
+  background-color: rgb(170, 0, 0);
+  grid-column-start: 2;
+  grid-row: span 2;
+  box-shadow: 2px 2px 3px #820404;
+}
+
+.funcbuttons .calcbutton:last-of-type:active {
+  transform: scale(0.98);
+  box-shadow: 0px 0px;
+  box-shadow: inset 2px 3px 3px 3px rgb(90, 5, 5), 0px 1px 1px rgb(200, 5, 5);
+  border: 0px;
+}

@@ -1,19 +1,27 @@
 const canvas = document.getElementById('canvas');
-const offCanvas = new OffscreenCanvas(800, 80);
+const ctx = canvas.getContext('2d');
+var offScreenSupported = true;
 const displayFace = document.getElementById('display');
 const reader = new FileReader();
-ctx = canvas.getContext('2d');
-canvas.width = displayFace.clientWidth;
-canvas.height = displayFace.clientHeight;
-console.log(displayFace.offsetWidth);
-offctx = offCanvas.getContext('2d');
 
-window.addEventListener('resize', function(e) {
+try {
+  const offCanvas = new OffscreenCanvas(800, 80);
+  offctx = offCanvas.getContext('2d');
   canvas.width = displayFace.clientWidth;
   canvas.height = displayFace.clientHeight;
-  animate();
-});
 
+  window.addEventListener('resize', function(e) {
+    canvas.width = displayFace.clientWidth;
+    canvas.height = displayFace.clientHeight;
+    animate();
+  });
+} catch(e) {
+  canvas.width = 800;
+  canvas.height = 80;
+  offScreenSupported = false;
+  var cssStyle = document.getElementById('style');
+  cssStyle.href = "staticStyle.css";
+}
 
 //easier to write the number to the display if it's backwards, this splits the string into an array, reverses it and joins it back together as a string, all on one line, super useful trick to know.
 function reverseNum(num){
@@ -324,41 +332,64 @@ function stickScroll(scrollArgs, breaker) {
 //this is the function that actually handles drawing the segments to the screen, they are all just polygons
 function animate() {
     //requestAnimationFrame(animate);
+  if (offScreenSupported == true) {
+    offctx.clearRect(0, 0, canvas.width, canvas.height);
+  	offctx.fillStyle = 'rgb(0, 0, 0)';
+  	offctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  	ctx.fillStyle = 'rgb(0, 0, 0)';
+  	ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-  offctx.clearRect(0, 0, canvas.width, canvas.height);
-	offctx.fillStyle = 'rgb(0, 0, 0)';
-	offctx.fillRect(0, 0, canvas.width, canvas.height);
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-	ctx.fillStyle = 'rgb(0, 0, 0)';
-	ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-	for (var i = 0; i < displaySpots.length; i++) {
-  	var spot = displaySpots[i];
-    //console.log(spot.segments.length);
-		 for (var x = 0; x < spot.segments.length; x++) {
-    	var seg = spot.segments[x];
-      offctx.beginPath();
-      offctx.moveTo(seg.path[0][0], seg.path[0][1]);
-      for (var z = 1; z < seg.path.length; z++) {
-      	//console.log(seg.path[z][0]);
-      	offctx.lineTo(seg.path[z][0], seg.path[z][1]);
+  	for (var i = 0; i < displaySpots.length; i++) {
+    	var spot = displaySpots[i];
+      //console.log(spot.segments.length);
+  		 for (var x = 0; x < spot.segments.length; x++) {
+      	var seg = spot.segments[x];
+        offctx.beginPath();
+        offctx.moveTo(seg.path[0][0], seg.path[0][1]);
+        for (var z = 1; z < seg.path.length; z++) {
+        	//console.log(seg.path[z][0]);
+        	offctx.lineTo(seg.path[z][0], seg.path[z][1]);
+        }
+        offctx.closePath();
+        if (seg.bit === 1) {offctx.fillStyle = 'rgb(255, 0, 0)';}
+        if (seg.bit === 0) {offctx.fillStyle = 'rgb(50, 0, 0)';}
+        offctx.fill();
       }
-      offctx.closePath();
-      if (seg.bit === 1) {offctx.fillStyle = 'rgb(255, 0, 0)';}
-      if (seg.bit === 0) {offctx.fillStyle = 'rgb(50, 0, 0)';}
-      offctx.fill();
+    }
+    offctx.canvas.convertToBlob().then(function(blob) {
+      reader.onloadend = function () {
+        var offCanvasImg = new Image();
+        offCanvasImg.onload = function(){
+          ctx.drawImage(offCanvasImg, 0, 0, offCanvasImg.width, offCanvasImg.height, 0, 0, canvas.width, canvas.height);
+        };
+        offCanvasImg.src = reader.result;
+      };
+      reader.readAsDataURL(blob);
+    });
+  }
+  else {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  	ctx.fillStyle = 'rgb(0, 0, 0)';
+  	ctx.fillRect(0, 0, canvas.width, canvas.height);
+  	for (var i = 0; i < displaySpots.length; i++) {
+    	var spot = displaySpots[i];
+      //console.log(spot.segments.length);
+  		 for (var x = 0; x < spot.segments.length; x++) {
+      	var seg = spot.segments[x];
+        ctx.beginPath();
+        ctx.moveTo(seg.path[0][0], seg.path[0][1]);
+        for (var z = 1; z < seg.path.length; z++) {
+        	//console.log(seg.path[z][0]);
+        	ctx.lineTo(seg.path[z][0], seg.path[z][1]);
+        }
+        ctx.closePath();
+        if (seg.bit === 1) {ctx.fillStyle = 'rgb(255, 0, 0)';}
+        if (seg.bit === 0) {ctx.fillStyle = 'rgb(50, 0, 0)';}
+        ctx.fill();
+      }
     }
   }
-  offctx.canvas.convertToBlob().then(function(blob) {
-    reader.onloadend = function () {
-      var offCanvasImg = new Image();
-      offCanvasImg.onload = function(){
-        ctx.drawImage(offCanvasImg, 0, 0, offCanvasImg.width, offCanvasImg.height, 0, 0, canvas.width, canvas.height);
-      };
-      offCanvasImg.src = reader.result;
-    };
-    reader.readAsDataURL(blob);
-  });
 }
 
 
