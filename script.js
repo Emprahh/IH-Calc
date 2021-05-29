@@ -138,6 +138,7 @@ function calcMem(cmd, ele) {
 	switch(cmd){
   	//clears the memory and resets the display
   	case "reset":
+      console.log("here");
     	intMem = "";
     	taskMem = [];
       lastProduct = 0;
@@ -276,7 +277,7 @@ function refreshSticks() {
     		charPos.segments[x].bit = 0;
     }
   }
-  //animate();
+  animate();
 }
 
 function displaySticks(num, scroll, reverse) {
@@ -288,7 +289,6 @@ function displaySticks(num, scroll, reverse) {
   //easier to display number when reversed
 	var rNum = reverseNum(num);
   var decimalPos = rNum.indexOf(".");
-  console.log(decimalPos);
   if (decimalPos !== -1) {
     rNum = rNum.replace(".", "");
   }
