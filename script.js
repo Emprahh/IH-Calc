@@ -138,12 +138,12 @@ function calcMem(cmd, ele) {
 	switch(cmd){
   	//clears the memory and resets the display
   	case "reset":
-      console.log("here");
     	intMem = "";
     	taskMem = [];
       lastProduct = 0;
       lastOp = "";
       refreshSticks();
+      displaySticks("");
       break;
     //if math error, resets the calculator and starts err message scrolling
     case "err":
@@ -269,7 +269,7 @@ function getSticks(char) {
 }
 
 //a function to simply reset the display to default before rewriting new numbers, otherwise shorter numbers do not overwrite larger numbers
-function refreshSticks() {
+function refreshSticks(resetFunc) {
 	for (var i = 0; i < displaySpots.length; i++) {
   	var charPos = displaySpots[i];
     //console.log(charPos.segments);
@@ -277,7 +277,9 @@ function refreshSticks() {
     		charPos.segments[x].bit = 0;
     }
   }
-  animate();
+  /*if (resetFunc === "reset") {
+    animate();
+  } */
 }
 
 function displaySticks(num, scroll, reverse) {
@@ -332,7 +334,7 @@ function stickScroll(scrollArgs, breaker) {
 //this is the function that actually handles drawing the segments to the screen, they are all just polygons
 function animate() {
     //requestAnimationFrame(animate);
-  if (offScreenSupported == true) {
+  if (offScreenSupported === true) {
     offctx.clearRect(0, 0, canvas.width, canvas.height);
   	offctx.fillStyle = 'rgb(0, 0, 0)';
   	offctx.fillRect(0, 0, canvas.width, canvas.height);
